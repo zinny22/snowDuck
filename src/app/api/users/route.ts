@@ -1,4 +1,4 @@
-import pool from "@/app/lib/db";
+import pool from "@/src/lib/db";
 
 export async function GET(request: any) {
   try {

@@ -11,11 +11,15 @@ function AuthKakaoPage() {
 
   const login = async () => {
     const response = await axios.post(`/api/auth/kakao?code=${authCode}`);
-    const data = response.data.data;
 
-    // TODO:받아온 엑세스토큰 처리 방법에 대한 고민 필요!
-    if (data?.access_token) {
-      route.replace("/main");
+    if (response.data.status === 200) {
+      if (response.data.isNewUser) {
+        route.replace("/signup");
+      } else {
+        route.replace("/main");
+      }
+    } else {
+      console.log(response.data.message);
     }
   };
 
@@ -23,6 +27,7 @@ function AuthKakaoPage() {
     if (authCode) {
       login();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authCode]);
 
   return <div>카카오 redirectUrl 위치</div>;

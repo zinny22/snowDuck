@@ -12,6 +12,8 @@ import { User } from "@/src/schema/user.schema";
 export async function POST(req: NextRequest) {
   const url = new URL(req.url);
   const code = url.searchParams.get("code");
+
+  // 1. 카카오 토큰 요청
   try {
     const response = await axios(
       `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.NEXT_PUBLIC_REST_API_KEY}&redirect_uri=http://localhost:3000/auth/kakao&code=${code}`,

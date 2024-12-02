@@ -25,7 +25,14 @@ function KakaoLoginButton() {
     }
   }, []);
 
-  return <button onClick={onClickLogin}>카카오 로그인</button>;
+  return (
+    <button
+      onClick={onClickLogin}
+      className="font-pretendard font-semibold leading-4 text-[#414141] bg-[#FEE500] h-[52px] rounded-full border-[1.5px] border-[#252525]"
+    >
+      카카오로 계속하기
+    </button>
+  );
 }
 
 export default KakaoLoginButton;

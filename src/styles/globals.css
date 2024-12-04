@@ -21,8 +21,11 @@ body {
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .wavy-outline-input {
+    @apply border-none outline-none bg-white shadow-none;
+    filter: url(#squiggly-line);
+    border: 1.8px solid #252525;
+    transition: filter 0.3s ease, background-color 0.3s ease;
   }
 }
 

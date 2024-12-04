@@ -1,5 +1,6 @@
 "use client";
 
+import KakaoPage from "@/src/components/pages/KakaoPage";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
@@ -7,7 +8,7 @@ import { useEffect } from "react";
 function AuthKakaoPage() {
   const route = useRouter();
   const searchParams = useSearchParams();
-  const authCode = searchParams.get("code"); // 인가코드가 저장된다.
+  const authCode = searchParams.get("code");
 
   const login = async () => {
     const response = await axios.post(`/api/auth/kakao?code=${authCode}`);
@@ -30,7 +31,7 @@ function AuthKakaoPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authCode]);
 
-  return <div>카카오 redirectUrl 위치</div>;
+  return <KakaoPage />;
 }
 
 export default AuthKakaoPage;

@@ -1,3 +1,5 @@
+import React from "react";
+
 const SnowDuckFallEffect = () => {
   return (
     <div className="absolute top-[-50px] left-0 w-full h-full pointer-events-none">
@@ -25,4 +27,4 @@ const SnowDuckFallEffect = () => {
   );
 };
 
-export default SnowDuckFallEffect;
+export default React.memo(SnowDuckFallEffect);

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 
 const SnowfallEffect = () => {
   return (
@@ -24,4 +25,4 @@ const SnowfallEffect = () => {
   );
 };
 
-export default SnowfallEffect;
+export default React.memo(SnowfallEffect);

@@ -15,7 +15,7 @@ function AuthKakaoPage() {
 
     if (response.data.status === 200) {
       if (response.data.isNewUser) {
-        route.replace("/signup");
+        route.replace("/sign-up");
       } else {
         route.replace("/main");
       }

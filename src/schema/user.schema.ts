@@ -2,6 +2,8 @@
 interface User {
   id: number;
   kakao_id: string;
+  bg_id: number | null;
+  nick_name: string | null;
 }
 
 export type { User };

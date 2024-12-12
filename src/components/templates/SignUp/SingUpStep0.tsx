@@ -6,9 +6,10 @@ import { useState } from "react";
 import ContentLayout from "../ContentLayout/ContentLayout";
 
 interface Props {
-  setStep: (step: number) => void;
+  onClickNext: (nickname: string) => void;
 }
-function SignUpStep0({ setStep }: Props) {
+
+function SignUpStep0({ onClickNext }: Props) {
   const [isSelected, setIsSelected] = useState(false);
   const [nickName, setNickName] = useState("");
 
@@ -68,7 +69,7 @@ function SignUpStep0({ setStep }: Props) {
           {isSelected && nickName.length > 0 ? (
             <button
               className="w-full h-[52px] rounded-full border-[1.5px] border-[#393939] bg-[#DADCFF] font-pretendard text-base text-[#393939] font-semibold"
-              onClick={() => setStep(1)}
+              onClick={() => onClickNext(nickName)}
             >
               다음
             </button>

@@ -67,6 +67,7 @@ export async function POST(req: NextRequest) {
       user = {
         id: newUser.id,
         kakao_id: newUser.kakao_id,
+        google_id: null,
         nick_name: "",
         bg_id: null,
       };

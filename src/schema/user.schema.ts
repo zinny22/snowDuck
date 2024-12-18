@@ -4,6 +4,7 @@ interface User {
   kakao_id: string;
   bg_id: number | null;
   nick_name: string | null;
+  google_id: string | null;
 }
 
 export type { User };

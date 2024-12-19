@@ -17,7 +17,7 @@ function AuthGooglePage() {
       if (response.data.isNewUser) {
         route.replace("/sign-up");
       } else {
-        route.replace("/main");
+        route.replace(`/main/${response.data.response.id}`);
       }
     } else {
       console.log(response.data.message);

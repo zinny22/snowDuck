@@ -70,6 +70,7 @@ export async function POST(req: NextRequest) {
         google_id: null,
         nick_name: "",
         bg_id: null,
+        isMe: null,
       };
 
       isNewUser = true;

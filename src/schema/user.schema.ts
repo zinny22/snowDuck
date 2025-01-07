@@ -5,6 +5,7 @@ interface User {
   bg_id: number | null;
   nick_name: string | null;
   google_id: string | null;
+  isMe: null | boolean;
 }
 
 export type { User };

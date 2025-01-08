@@ -2,13 +2,15 @@
 
 import axios from "axios";
 import GradientLayout from "../templates/GradientLayout/GradientLayout";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { User } from "@/src/schema/user.schema";
 
 function MainPage() {
+  const router = useRouter();
   const params = useParams();
+
   const [userInfo, setUserInfo] = useState<User>();
 
   const initUserData = async () => {
@@ -66,7 +68,12 @@ function MainPage() {
             )}
           </div>
 
-          <button className="pb-8 items-center flex justify-center">
+          <button
+            className="pb-8 items-center flex justify-center"
+            onClick={() =>
+              router.replace(`/main/${params.id}/write?bg=${userInfo?.bg_id}`)
+            }
+          >
             <Image
               src={`/svgs/${
                 userInfo?.isMe ? "showSnowDuckButton" : "makingSnowDuckButton"

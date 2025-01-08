@@ -1,9 +1,7 @@
-function WritePage() {
-  return (
-    <div>
-      <h1>작성하기 페이지</h1>
-    </div>
-  );
+import WritePage from "@/src/components/pages/WritePage";
+
+function Write() {
+  return <WritePage />;
 }
 
-export default WritePage;
+export default Write;

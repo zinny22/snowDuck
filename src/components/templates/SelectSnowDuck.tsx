@@ -8,16 +8,16 @@ import SnowDuckWithBubble from "../atoms/SnowDuckWithBubble/SnowDuckWithBubble";
 
 interface Props {
   bgId: string;
-  setSelectedDuck: Dispatch<SetStateAction<number>>;
+  setDuckId: Dispatch<SetStateAction<number>>;
 }
-function SelectSnowDuck({ bgId, setSelectedDuck }: Props) {
+function SelectSnowDuck({ bgId, setDuckId }: Props) {
   const [selectedId, setSelectedId] = useState(1);
 
   const bgColor = snowDuck.find((duck) => duck.id === selectedId)?.color;
 
   const onClickDuck = (id: number) => {
     setSelectedId(id);
-    setSelectedDuck(id);
+    setDuckId(id);
   };
 
   return (

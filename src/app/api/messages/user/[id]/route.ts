@@ -13,7 +13,7 @@ export async function GET(
   const { id } = params;
 
   try {
-    const query = "SELECT * FROM messages WHERE user_id = ?";
+    const query = "SELECT * FROM message WHERE user_id = ?";
     const [rows] = await pool.query(query, [id]);
 
     return NextResponse.json({

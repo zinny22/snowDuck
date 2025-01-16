@@ -1,5 +1,6 @@
 "use client";
 
+import ModalProvider from "@/src/contexts/Modal.context/Modal.Context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import React, { Suspense, useState } from "react";
@@ -13,7 +14,9 @@ function ProvidersLayout({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <Suspense fallback={<div id="container"></div>}>{children}</Suspense>
+      <Suspense fallback={<div id="Loading"></div>}>
+        <ModalProvider>{children}</ModalProvider>
+      </Suspense>
     </QueryClientProvider>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { snowDuck } from "@/src/constants/snowDuck";
-import clsx from "clsx";
 import Image from "next/image";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 

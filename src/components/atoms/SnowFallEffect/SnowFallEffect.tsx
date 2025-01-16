@@ -1,9 +1,19 @@
+import clsx from "clsx";
 import Image from "next/image";
-import React from "react";
+import React, { memo } from "react";
 
-const SnowfallEffect = () => {
+interface Props {
+  zIndex?: number;
+}
+
+function SnowfallEffect({ zIndex }: Props) {
   return (
-    <div className="absolute top-[-20px] left-0 w-full h-full pointer-events-none">
+    <div
+      className={clsx(
+        "absolute top-[-20px] left-0 w-full h-full pointer-events-none",
+        zIndex && `z-${zIndex}`
+      )}
+    >
       {Array.from({ length: 20 }).map((_, index) => (
         <Image
           src="/svgs/snow.svg"
@@ -23,6 +33,6 @@ const SnowfallEffect = () => {
       ))}
     </div>
   );
-};
+}
 
-export default React.memo(SnowfallEffect);
+export default memo(SnowfallEffect);

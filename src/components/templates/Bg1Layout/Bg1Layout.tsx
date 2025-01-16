@@ -5,9 +5,12 @@ import { Message } from "@/src/schema/message.schema";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { snowDuck } from "@/src/constants/snowDuck";
+import { useModal } from "@/src/contexts/Modal.context/Modal.Context";
+import MsgModal from "../../mocules/MsgModal";
 
 function Bg1Layout() {
   const params = useParams();
+  const { open } = useModal();
 
   const itemsPerPage = 18;
 
@@ -15,7 +18,7 @@ function Bg1Layout() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentData = messageList.slice(startIndex, startIndex + itemsPerPage);
+  const currentData = messageList?.slice(startIndex, startIndex + itemsPerPage);
   const totalPages = Math.ceil(messageList.length / itemsPerPage); // 전체 페이지 수
 
   const initUserData = async () => {
@@ -87,7 +90,7 @@ function Bg1Layout() {
               bottom: calculatePosition(idx).bottom,
               zIndex: idx,
             }}
-            onClick={() => console.log(123)}
+            onClick={() => open(<MsgModal />)}
           >
             <div className="relative">
               <SnowDuckWithBubble

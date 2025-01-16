@@ -2,53 +2,24 @@
 
 import axios from "axios";
 import GradientLayout from "../templates/GradientLayout/GradientLayout";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { User } from "@/src/schema/user.schema";
-import { Message } from "@/src/schema/message.schema";
-import SnowDuckWithBubble from "../atoms/SnowDuckWithBubble/SnowDuckWithBubble";
-import { snowDuck } from "@/src/constants/snowDuck";
+import HomeButton from "../atoms/HomeButton/HomeButton";
+import Bg1Layout from "../templates/Bg1Layout/Bg1Layout";
 
 function MainPage() {
-  const router = useRouter();
   const params = useParams();
 
-  const [userInfo, setUserInfo] = useState<User>({ bg_id: 1 });
-  const [messageList, setMessageList] = useState<Message[]>([]);
+  const [userInfo, setUserInfo] = useState<User>();
 
   const initUserData = async () => {
     try {
       const _userInfo = await axios.get(`/api/users/${params.id}`);
-      const _messageList = await axios.get(`/api/messages/user/${params.id}`);
       setUserInfo(_userInfo?.data?.response);
-      setMessageList(_messageList?.data?.response);
     } catch (err) {
       console.log(err);
-    }
-  };
-
-  const calculatePosition = (idx: number) => {
-    if (idx >= 0 && idx < 4) {
-      return {
-        top: "30%",
-        left: `${20 + idx * 14}%`,
-      };
-    } else if (idx >= 4 && idx < 9) {
-      return {
-        top: "38%",
-        left: `${14 + (idx - 4) * 14}%`,
-      };
-    } else if (idx >= 9 && idx < 12) {
-      return {
-        top: "58%",
-        left: `${30 + (idx - 9) * 14}%`,
-      };
-    } else {
-      return {
-        top: "79%",
-        left: `${20 + (idx - 12) * 10}%`,
-      };
     }
   };
 
@@ -59,7 +30,7 @@ function MainPage() {
   return (
     <GradientLayout>
       <Image
-        src={`/bg/${userInfo?.bg_id}.png`}
+        src={`/bg/${userInfo?.bg_id || 1}.png`}
         alt="배경"
         fill
         className="object-cover"
@@ -98,58 +69,9 @@ function MainPage() {
             )}
           </div>
 
-          <div className="h-[80%]">
-            {messageList?.map((msg, idx) => {
-              const bgColor = snowDuck.find(
-                (duck) => duck.id === Number(msg.duck_id)!
-              )?.color;
+          {userInfo?.bg_id === 1 && <Bg1Layout />}
 
-              return (
-                <button
-                  key={msg.id}
-                  className="absolute"
-                  style={{
-                    top: calculatePosition(idx).top,
-                    left: calculatePosition(idx).left,
-                    zIndex: idx,
-                  }}
-                  onClick={() => console.log(123)}
-                >
-                  <div className="relative">
-                    <SnowDuckWithBubble
-                      label={msg.message_text}
-                      color={
-                        bgColor?.includes("li") ? "white" : (bgColor as string)
-                      }
-                    />
-                    <Image
-                      src={`/duck/${msg.duck_id}.svg`}
-                      alt=""
-                      width={56}
-                      height={56}
-                      className="relative z-10"
-                    />
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          <button
-            className="pb-8 items-center flex justify-center"
-            onClick={() =>
-              router.replace(`/main/${params.id}/write?bg=${userInfo?.bg_id}`)
-            }
-          >
-            <Image
-              src={`/svgs/${
-                userInfo?.isMe ? "showSnowDuckButton" : "makingSnowDuckButton"
-              }.svg`}
-              alt="닉네임"
-              width={216}
-              height={78}
-            />
-          </button>
+          <HomeButton userInfo={userInfo} />
         </div>
       </section>
     </GradientLayout>

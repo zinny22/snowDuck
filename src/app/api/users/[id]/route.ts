@@ -41,9 +41,9 @@ export async function GET(
     const secret = process.env.JWT_SECRET_KEY || "__next_private_export_map__";
     let decoded;
 
-    try {
-      decoded = jwt.verify(token, secret) as { id: string };
-    } catch {
+    decoded = jwt.verify(token, secret) as { id: string };
+
+    if (!decoded) {
       // 엑세스 토큰이 없거나 만료된 경우
       return NextResponse.json({
         status: 401,

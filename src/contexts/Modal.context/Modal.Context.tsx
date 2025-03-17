@@ -51,10 +51,9 @@ function ModalProvider({ children }: { children: ReactNode }) {
         isOpen &&
         createPortal(
           <>
-            <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40" />
             {modalElem}
 
-            <SnowFallEffect zIndex={40} />
+            <SnowFallEffect zIndex={50} />
           </>,
           document.body
         )}

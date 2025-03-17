@@ -33,7 +33,8 @@ function MainPage() {
         src={`/bg/${userInfo?.bg_id || 1}.png`}
         alt="배경"
         fill
-        className="object-cover"
+        priority
+        className="w-full h-full object-cover object-center"
       />
 
       <section className="absolute top-0 bottom-0 right-0 left-0">

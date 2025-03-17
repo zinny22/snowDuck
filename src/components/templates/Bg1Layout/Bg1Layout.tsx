@@ -33,7 +33,7 @@ function Bg1Layout() {
   const calculatePosition = (idx: number) => {
     if (idx >= 0 && idx < 4) {
       return {
-        top: "24%",
+        top: "26%",
         left: `${20 + idx * 14}%`,
       };
     } else if (idx >= 4 && idx < 9) {
@@ -90,7 +90,7 @@ function Bg1Layout() {
               bottom: calculatePosition(idx).bottom,
               zIndex: idx,
             }}
-            onClick={() => open(<MsgModal />)}
+            onClick={() => open(<MsgModal msg={msg} />)}
           >
             <div className="relative">
               <SnowDuckWithBubble
